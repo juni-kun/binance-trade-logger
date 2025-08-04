@@ -28,7 +28,7 @@ Skrip Python untuk mencatat trade Binance Futures ke Google Sheet dan mengirim l
 
 4. Jalankan dengan:
     ```bash
-    python tes10.py
+    python binance.py
     ```
 
 ## 🔎 Contoh Output
