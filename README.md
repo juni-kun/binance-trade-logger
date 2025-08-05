@@ -9,6 +9,20 @@ Skrip Python untuk mencatat trade Binance Futures ke Google Sheet dan mengirim l
 - Notifikasi Telegram setiap trade selesai
 - Format tampilan profesional di Telegram & Google Sheets
 
+## 
+✅ STRUKTUR FILE YANG DIBUTUHKAN
+
+project-folder/
+
+- main.py  <- (isi skrip kamu)
+
+- .env     <- (isi API keys)
+
+- credentials.json <- (Google Service Account credentials)
+
+- requirements.txt <- (daftar library Python)
+
+
 ## 📦 Setup
 
 1. Buat file `.env` dengan isi seperti:
