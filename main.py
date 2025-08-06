@@ -24,8 +24,15 @@ SHEET = gc.open('TradeLog').worksheet('log')  # Pastikan nama spreadsheet & tab 
 
 def is_trade_logged(trade_id):
     try:
-        trade_ids = set(str(tid).strip() for tid in SHEET.col_values(1)[1:])
+        # Ambil seluruh isi sheet, lalu ambil 100 baris terakhir (atau lebih jika mau)
+        last_rows = SHEET.get_all_values()[-100:]
+
+        # Ambil hanya kolom pertama (trade ID) dari baris-baris tersebut
+        trade_ids = {row[0].strip() for row in last_rows if len(row) > 0}
+
+        # Cek apakah ID yang sedang diproses sudah ada di 100 baris terakhir
         return str(trade_id) in trade_ids
+
     except Exception as e:
         print(f"ERROR checking trade_id in sheet: {e}")
         return False
