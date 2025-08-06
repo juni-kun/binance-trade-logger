@@ -22,6 +22,11 @@ project-folder/
 
 - requirements.txt <- (daftar library Python)
 
+## ✅ Cara Membuat Ini Jalan 24/7
+Jadwalkan lewat cron di VPS (misalnya setiap 2 menit)
+```
+*/2 * * * * /usr/bin/python3 /home/user/binance-trade-logger/main.py
+```
 
 ## 📦 Setup
 
