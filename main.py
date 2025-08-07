@@ -142,19 +142,15 @@ def format_closed_trade_message(trade):
     commission = float(trade.get("commission", 0))
     timestamp = trade["time"]
 
-    if side == "BUY":
-        position_emoji = "🔴 SHORT"
-        action_label = "Menutup SHORT (BUY)"
-    else:
-        position_emoji = "🟢 LONG"
-        action_label = "Menutup LONG (SELL)"
+    position_emoji = "🔴 SHORT" if side == "BUY" else "🟢 LONG"
+    action_label = "Menutup SHORT (BUY)" if side == "BUY" else "Menutup LONG (SELL)"
 
     if realized_pnl > 0:
         pnl_label = "✅ PROFIT"
     elif realized_pnl < 0:
         pnl_label = "❌ LOSS"
     else:
-        pnl_label = "⚪ 🔁 BREAK EVEN"
+        pnl_label = "⚪ BREAK EVEN"
 
     try:
         account_data = client.futures_account()
@@ -164,9 +160,6 @@ def format_closed_trade_message(trade):
     except Exception as e:
         print(f"Gagal ambil leverage untuk {symbol}: {e}")
         leverage = "-"
-
-    margin_entry = price * qty / 20
-    margin_total = price * qty / 5
 
     try:
         leverage_float = float(leverage)
@@ -178,22 +171,20 @@ def format_closed_trade_message(trade):
     wallet = get_wallet_balance()
     time_str = format_timestamp(timestamp)
 
-    # Tambahkan durasi
     open_time = get_trade_open_time(trade)
     duration = calculate_trade_duration(open_time, timestamp) if open_time else "?"
 
     message = (
-        f"{symbol} | {position_emoji}\n"
-        f"{pnl_label}\n"
-        f"Waktu: {time_str}\n"
-        f"Leverage: {leverage}x\n"
-        f"Size: {qty:.4f} | Harga: {price:.4f}\n"
-        f"Margin Entry: {margin_entry:.2f} USDT\n"
-        f"Margin Total: {margin_total:.2f} USDT\n"
-        f"PNL: {pnl_label} `{realized_pnl:.2f} USDT`\n"
-        f"📊 ROI (PNL%): `{pnl_percent:.2f}%`\n\n"
-        f"🕒 Lama Trading: {duration}\n"
-        f"💰 Wallet Sekarang: `{wallet:.2f} USDT`"
+        f"📉 *{symbol}* | {position_emoji}\n"
+        f"{pnl_label} | *{realized_pnl:.2f} USDT*\n"
+        f"──────────────\n"
+        f"🕒 *Waktu*: {time_str}\n"
+        f"📈 *Harga*: `{price:.2f}` | *Qty*: `{qty:.4f}`\n"
+        f"⚖️ *Leverage*: `{leverage}x`\n"
+        f"💰 *Margin*: `{(price * qty / float(leverage)):.2f} USDT`\n"
+        f"📊 *ROI*: `{pnl_percent:.2f}%`\n"
+        f"🕓 *Durasi*: {duration}\n"
+        f"💼 *Wallet*: `{wallet:.2f} USDT`\n"
     )
     return message
 
