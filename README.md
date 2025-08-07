@@ -47,7 +47,7 @@ Jadwalkan lewat cron di VPS (misalnya setiap 2 menit)
 
 4. Jalankan dengan:
     ```bash
-    python binance.py
+    python main.py
     ```
 
 ## 🔎 Contoh Output
