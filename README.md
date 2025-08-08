@@ -38,14 +38,19 @@ Jadwalkan lewat cron di VPS (misalnya setiap 2 menit)
     TELEGRAM_CHAT_ID=isi_punya_kamu
     ```
 
-2. Siapkan `credentials.json` dari Google API (Spreadsheet access).
+2. Siapkan `credentials.json` dari Google API (Spreadsheet access)
+Google Service Account
+- Buat service account di `Google Cloud Console`.
+- Aktifkan Google Sheets API dan Google Drive API.
+- Unduh credentials.json ke folder project.
+- Pastikan spreadsheet `TradeLog` punya sheet `log` & `jurnal`, lalu bagikan akses ke email service account.
 
-3. Install dependensi:
+4. Install dependensi:
     ```bash
     pip install python-binance python-telegram-bot gspread oauth2client
     ```
 
-4. Jalankan dengan:
+5. Jalankan dengan:
     ```bash
     python main.py
     ```
