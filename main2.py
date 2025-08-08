@@ -106,12 +106,12 @@ def log_journal_entry(trade):
             format_timestamp(close_time),  # A: Waktu
             trade["symbol"],              # B: Symbol
             position,                     # C: Posisi (SHORT/LONG)
-            leverage,                     # E: Leverage (contoh: 20x)
-            trade["qty"],                 # F: Qty
-            trade["price"],               # G: Price
-            trade.get("realizedPnl", "0"),# H: Realized PNL
-            get_wallet_balance(),         # I: Wallet Balance
-            duration                      # J: Durasi
+            leverage,                     # D: Leverage (contoh: 20x)
+            trade["qty"],                 # E: Qty
+            trade["price"],               # F: Price
+            trade.get("realizedPnl", "0"),# G: Realized PNL
+            get_wallet_balance(),         # H: Wallet Balance
+            duration                      # I: Durasi
         ])
     except Exception as e:
         print(f"ERROR logging to jurnal sheet: {e}")
