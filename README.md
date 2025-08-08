@@ -54,24 +54,35 @@ Jadwalkan lewat cron di VPS (misalnya setiap 2 menit)
 
 ### Telegram (Markdown)
 ```
-BTCUSDT | 🔴 SHORT  
-✅ PROFIT  
-Waktu: 2025‑08‑04 13:22:41  
-Leverage: 20x  
-Size: 0.0020 | Harga: 29123.4500  
-Margin Entry: 2.91 USDT  
-Margin Total: 11.65 USDT  
-PNL: ✅ PROFIT `4.58 USDT`  
-📊 ROI (PNL%): `39.33%`  
-
-🕒 Lama Trading: 2 jam 14 menit  
-💰 Wallet Sekarang: `172.33 USDT`  
+📉 BTCUSDT | 🔴 SHORT
+✅ PROFIT | 12.50 USDT
+──────────────
+🕒 Waktu: 2025-08-08 10:32:15
+📈 Harga: 29250.50 | Qty: 0.0100
+⚖️ Leverage: 20x
+💰 Margin: 14.63 USDT
+📊 ROI: 85.47%
+🕓 Durasi: 2h 15m
+💼 Wallet: 1250.40 USDT
 ```
 
-### Google Sheet: jurnal
-| Tanggal            | Symbol  | Posisi | Qty    | Harga     | PnL     | Wallet   | Durasi         |
-|--------------------|---------|--------|--------|-----------|---------|----------|----------------|
-| 2025‑08‑04 13:22:41| BTCUSDT | SHORT  | 0.002  | 29123.45  | 4.58    | 172.33   | 2 jam 14 menit |
+## 📄 Contoh Output di Google Sheet
+
+### 1. Sheet: `log`
+| Trade ID  | Time                | Symbol   | Realized PNL |
+|-----------|--------------------|----------|--------------|
+| 123456789 | 2025-08-08 10:32:15 | BTCUSDT  | 12.50        |
+| 123456790 | 2025-08-08 12:45:20 | ETHUSDT  | -5.25        |
+| 123456791 | 2025-08-08 14:02:55 | BNBUSDT  | 0.00         |
+
+---
+
+### 2. Sheet: `jurnal`
+| Time                | Symbol   | Posisi | Leverage | Qty     | Price    | Realized PNL | Wallet Balance | Durasi |
+|--------------------|----------|--------|----------|---------|----------|--------------|----------------|--------|
+| 2025-08-08 10:32:15 | BTCUSDT  | SHORT  | 20x      | 0.0100  | 29250.50 | 12.50        | 1250.40        | 2h 15m |
+| 2025-08-08 12:45:20 | ETHUSDT  | LONG   | 10x      | 0.5000  | 1850.00  | -5.25        | 1245.15        | 45m    |
+| 2025-08-08 14:02:55 | BNBUSDT  | SHORT  | 15x      | 1.0000  | 240.00   | 0.00         | 1245.15        | 10m    |
 
 ## ⚠️ Keamanan
 Pastikan file `.env` dan `credentials.json` masuk ke `.gitignore` bila diupload ke repo GitHub.
